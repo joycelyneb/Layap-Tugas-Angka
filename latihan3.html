@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number Pyramid</title>
+    <style>
+        body {
+            background-color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: monospace;
+            color: #000;
+            font-size: 24px;
+        }
+        #output {
+            white-space: pre;
+            line-height: 1.2;
+        }
+    </style>
+</head>
+<body>
+    <div id="output"></div>
+
+    <script>
+        function generateNumberPyramid(rows) {
+            let output = '';
+            
+            for (let i = 1; i <= rows; i++) {
+                const spaces = ' '.repeat((rows - i) * 3);
+                output += spaces;
+                
+                for (let j = 1; j <= i; j++) {
+                    output += j + '  ';
+                }
+                
+                for (let j = i - 1; j >= 1; j--) {
+                    output += j + '  ';
+                }
+                
+                output += '\n\n';
+            }
+            
+            document.getElementById('output').textContent = output;
+        }
+        generateNumberPyramid(9);
+    </script>
+</body>
+</html>

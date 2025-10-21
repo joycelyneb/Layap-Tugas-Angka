@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Struktur Angka Segitiga Simetris Otomatis</title>
+    <style>
+        body {
+            background-color: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: monospace;
+            color: #fff;
+            font-size: 24px;
+        }
+        #output {
+            white-space: pre;
+            line-height: 1.2;
+        }
+    </style>
+</head>
+<body>
+    <pre id="output"></pre>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const outputElement = document.getElementById('output');
+            let result = '';
+
+            const numRows = 10;
+
+            for (let i = 0; i < numRows; i++) {
+                let line = '';
+                
+                const leadingSpace = 17 - (i * 2);
+                line += ' '.repeat(Math.max(0, leadingSpace));
+                
+                if (i === 0) {
+                    line += '0';
+                } else if (i === 1) {
+                    line += '0 1 0';
+                } else {
+                    
+                    const leftRightNum = i - 1;
+                    
+                    let actualCenterNum;
+                    let centerSpace;
+
+                    if (i === 2) {
+                        actualCenterNum = 2;
+                        centerSpace = 3;
+                    } else {
+                        actualCenterNum = i + 1;
+                        centerSpace = (2 * i) - 1;
+                    }
+                    
+                    line += leftRightNum;
+                    line += ' '.repeat(centerSpace);
+                    line += actualCenterNum;
+                    line += ' '.repeat(centerSpace);
+                    
+                    line += leftRightNum;
+                }
+
+                result += line.trimEnd() + '\n';
+            }
+
+            outputElement.textContent = result;
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pascal's Triangle</title>
+    <style>
+        body {
+            background-color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: monospace;
+            color: #000;
+            font-size: 24px;
+        }
+        #output {
+            white-space: pre;
+            line-height: 1.2;
+        }
+    </style>
+</head>
+<body>
+    <div id="output"></div>
+
+    <script>
+        function generatePascalTriangle(rows) {
+            const triangle = [];
+            
+            for (let i = 0; i < rows; i++) {
+                triangle[i] = [];
+                for (let j = 0; j <= i; j++) {
+                    if (j === 0 || j === i) {
+                        triangle[i][j] = 1;
+                    } else {
+                        triangle[i][j] = triangle[i-1][j-1] + triangle[i-1][j];
+                    }
+                }
+            }
+            
+            return triangle;
+        }
+
+        function displayPascalTriangle(rows) {
+            const triangle = generatePascalTriangle(rows);
+            let output = '';
+            
+            triangle.forEach((row, i) => {
+                const spaces = ' '.repeat((rows - i - 1) * 4);
+                output += spaces;
+                
+                row.forEach((num, j) => {
+                    const numStr = num.toString();
+                    output += numStr.padEnd(8, ' ');
+                });
+                
+                output += '\n\n';
+            });
+            
+            document.getElementById('output').textContent = output;
+        }
+
+        displayPascalTriangle(6);
+    </script>
+</body>
+</html>
